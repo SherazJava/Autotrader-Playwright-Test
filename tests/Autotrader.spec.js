@@ -7,9 +7,11 @@ const { test, expect } = require('@playwright/test');
 
     await page.goto('https://www.autotrader.co.uk/');
     const cookies = page.frameLocator('iframe[title="SP Consent Message"]');
-    await cookies.getByRole('button', { name: 'Accept All' }).waitFor();
-    await cookies.getByRole('button', { name: 'Accept All' }).click();
-});
+    const acceptBtn = cookies.getByRole('button', { name: 'Accept All' });
+    
+    if (await acceptBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
+        await acceptBtn.click();
+};
 
 /*I ran into the issue of needing to put in a postcode/valid postcode, so thought to keep both in as negative tests*/
     test('User cannot search with empty postcode', async ({ page })=> 
