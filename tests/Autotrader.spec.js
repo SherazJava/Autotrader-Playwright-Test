@@ -18,6 +18,7 @@ const { test, expect } = require('@playwright/test');
     test('User cannot search with empty postcode', async ({ page })=> 
 
 {
+    await page.getByTestId('make').waitFor({ state: 'visible' });
     await page.getByTestId('make').selectOption('BMW');
     await page.getByTestId('model').selectOption('1 Series');
     await page.getByTestId('connected-form-search-button').click();
@@ -28,6 +29,7 @@ const { test, expect } = require('@playwright/test');
 /*One more for an invalid postcode*/
     test('User cannot search with invalid postcode', async ({ page })=>
 {
+    await page.getByTestId('make').waitFor({ state: 'visible' });
     await page.getByTestId('make').selectOption('BMW');
     await page.getByTestId('model').selectOption('1 Series');
     await page.locator('#postcode').fill('S999XXA');
@@ -41,6 +43,8 @@ const { test, expect } = require('@playwright/test');
                 /*CHANGE CAR/DETAILS IF NEEDED*/
 
 async function searchBMW(page) {
+    
+  await page.getByTestId('make').waitFor({ state: 'visible' });
   await page.getByTestId('make').selectOption('BMW');
   await page.getByTestId('model').selectOption('1 Series');
   await page.locator('#postcode').fill('M160LX');
