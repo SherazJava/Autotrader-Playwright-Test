@@ -11,7 +11,8 @@ const { test, expect } = require('@playwright/test');
     
     if (await acceptBtn.isVisible({ timeout: 5000 }).catch(() => false)) {
         await acceptBtn.click();
-};
+    }
+});
 
 /*I ran into the issue of needing to put in a postcode/valid postcode, so thought to keep both in as negative tests*/
     test('User cannot search with empty postcode', async ({ page })=> 
@@ -73,7 +74,7 @@ async function filterM140(page) {
 });
 
 /*TS 4 - Now that's bloody wicked, but top it off with a rammi manual, low miles and just a rammi spec*/
-    test('Filtering for the perfect car', async ({page})=>
+    test('Filtering for the perfect car', async ({page}) => 
 {
     await searchBMW(page);
     await filterM140(page);
