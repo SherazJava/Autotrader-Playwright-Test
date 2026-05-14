@@ -4,7 +4,7 @@ module.exports = defineConfig({
   testDir: './tests',
   
   use: {
-    headless: false,
+    headless: true,
   },
 
 projects: [
